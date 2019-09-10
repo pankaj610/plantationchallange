@@ -5,26 +5,23 @@ $email = $_SESSION['userid'];
 ?>
 <?php
 //pin request 
-if(isset($_GET['pin_request'])){
-	$amount = mysqli_real_escape_string($con,$_GET['amount']);
-	$date = date("y-m-d");
-	
-	
-	if($amount!=''){
-		//Inset the value to pin request
-		$query = mysqli_query($con,"insert into pin_request(`email`,`amount`,`date`) values('$email','$amount','$date')");
-		if($query){
-			echo '<script>alert("Pin request sent successfully");window.location.assign("pin-request.php");</script>';
-		}
-		else{
-			//echo mysqli_error($con);
-			echo '<script>alert("Unknown error occure.");window.location.assign("pin-request.php");</script>';
-		}
-	}
-	else{
-		echo '<script>alert("Please fill all the fields");</script>';
-	}
-	
+if (isset($_GET['pin_request'])) {
+    $amount = mysqli_real_escape_string($con, $_GET['amount']);
+    $date = date("y-m-d");
+
+
+    if ($amount != '') {
+        //Inset the value to pin request
+        $query = mysqli_query($con, "insert into pin_request(`email`,`amount`,`date`) values('$email','$amount','$date')");
+        if ($query) {
+            echo '<script>alert("Pin request sent successfully");window.location.assign("pin-request.php");</script>';
+        } else {
+            //echo mysqli_error($con);
+            echo '<script>alert("Unknown error occure.");window.location.assign("pin-request.php");</script>';
+        }
+    } else {
+        echo '<script>alert("Please fill all the fields");</script>';
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -52,7 +49,7 @@ if(isset($_GET['pin_request'])){
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
- 
+
 
 </head>
 
@@ -87,42 +84,41 @@ if(isset($_GET['pin_request'])){
                     </div>
                 </div> -->
                 <div class="row">
-                	<div class="col-lg-6">
-                    	<br><br>
-                    	<table class="table table-bordered table-striped">
-                        	<tr>
-                            	<th>S.n.</th>
+                    <div class="col-lg-6">
+                        <br><br>
+                        <table class="table table-bordered table-striped">
+                            <tr>
+                                <th>S.n.</th>
                                 <th>Amount</th>
                                 <th>Date</th>
                                 <th>Status</th>
                             </tr>
-                            <?php 
-							$i=1;
-							$query = mysqli_query($con,"select * from pin_request where email='$email' order by id desc");
-							if(mysqli_num_rows($query)>0){
-								while($row=mysqli_fetch_array($query)){
-									$amount = $row['amount'];
-									$date = $row['date'];
-									$status = $row['status'];
-								?>
-                                	<tr>
-                                    	<td><?php echo $i; ?></td>
+                            <?php
+                            $i = 1;
+                            $query = mysqli_query($con, "select * from pin_request where email='$email' order by id desc");
+                            if (mysqli_num_rows($query) > 0) {
+                                while ($row = mysqli_fetch_array($query)) {
+                                    $amount = $row['amount'];
+                                    $date = $row['date'];
+                                    $status = $row['status'];
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $i; ?></td>
                                         <td><?php echo $amount; ?></td>
                                         <td><?php echo $date; ?></td>
                                         <td><?php echo $status; ?></td>
                                     </tr>
                                 <?php
-									$i++;
-								}
-							}
-							else{
-							?>
-                            	<tr>
-                                	<td colspan="4">You have no pin request yet.</td>
+                                        $i++;
+                                    }
+                                } else {
+                                    ?>
+                                <tr>
+                                    <td colspan="4">You have no pin request yet.</td>
                                 </tr>
                             <?php
-							}
-							?>
+                            }
+                            ?>
                         </table>
                     </div>
                 </div>
