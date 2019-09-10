@@ -89,9 +89,9 @@ if (isset($_GET['pin_request'])) {
                         <table class="table table-bordered table-striped">
                             <tr>
                                 <th>S.n.</th>
-                                <th>Amount</th>
-                                <th>Date</th>
-                                <th>Status</th>
+                                <th>Name</th>
+                                <th>Date Of Joining</th>
+                                <th>Task Status</th>
                             </tr>
                             <?php
                             $i = 1;
