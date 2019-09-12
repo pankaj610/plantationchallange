@@ -90,7 +90,7 @@
 
                                 <div class="form-group text-right">
                                     <input type="hidden" name="underuser" value="<?php echo '1';?>">
-                                    <input type="submit" name="join_user" class="btn btn-primary" value="Join">
+                                    <input type="submit" name="join_user" class="btn btn-primary" value="join">
                                 </div>
                             </fieldset>
                         </form>
