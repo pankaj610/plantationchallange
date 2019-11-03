@@ -3,6 +3,10 @@
  * Copyright 2013-2016 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
+
+ .navbar {
+    border: none !important;
+}
 body {
   background-color: #f8f8f8;
 }
@@ -22,8 +26,15 @@ body {
     border-left: 1px solid #e7e7e7;
   }
 }
+@media (max-width: 768px) {
+  #page-wrapper {
+    margin: 0px 0 0 0;
+    padding: 0 0px;
+  }
+}
 .navbar-top-links {
   margin-right: 0;
+  text-align: right;
 }
 .navbar-top-links li {
   display: inline-block;
@@ -104,13 +115,18 @@ body {
     z-index: 1;
     position: absolute;
     width: 250px;
-    margin-top: 51px;
+    margin-top: 145px;
   }
   .navbar-top-links .dropdown-messages,
   .navbar-top-links .dropdown-tasks,
   .navbar-top-links .dropdown-alerts {
     margin-left: auto;
   }
+}
+@media (max-width: 768px) {
+  .sidebar { 
+    margin-top: 35px;
+  } 
 }
 .btn-outline {
   color: inherit;
@@ -404,16 +420,16 @@ table.dataTable thead .sorting:after {
 }
 @media (max-width: 767px) {
   ul.timeline:before {
-    left: 40px;
+    left: 25px;
   }
   ul.timeline > li > .timeline-panel {
     width: calc(10%);
     width: -moz-calc(10%);
-    width: -webkit-calc(10%);
+    width: -webkit-calc(80%);
   }
   ul.timeline > li > .timeline-badge {
     top: 16px;
-    left: 15px;
+    left: 0px;
     margin-left: 0;
   }
   ul.timeline > li > .timeline-panel {

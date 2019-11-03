@@ -1,3 +1,14 @@
+<?php 
+include('php-includes/connect.php');  
+?>
+
+<?php 
+    if(isset($_GET['getrefername'])){
+        $code = $_GET['getrefername'];
+        echo $refer_name = mysqli_query($con, "select * from users where users.id = '$code';")->fetch_array()['name'];
+        exit();
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,7 +45,7 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Create New User</h3>
+                        <h3 class="panel-title">Signup</h3>
                     </div>
                     <div class="panel-body">
                         <!-- <form method="post" action="login.php">
@@ -51,7 +62,7 @@
                         </form> -->
                         <!-- <div class="row"> -->
                         <!-- <div class="col-lg-4"> -->
-                        <form method="post" action="createuser.php?">
+                        <form method="post" action="createuser.php">
                             <fieldset>
                                 <div class="form-group">
                                     <label>Full Name</label>
@@ -68,12 +79,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Mobile</label>
-                                    <input type="text" name="mobile" placeholder="Enter Your Mobile Number/Whatsapp Number" class="form-control" required>
+                                    <input type="text" name="mobile" maxlength="11" placeholder="Enter Your Mobile Number/Whatsapp Number" class="form-control" required>
                                 </div>
-                                <!-- <div class="form-group">
-                                    <label>Whatsapp Number</label>
-                                    <input type="text" name="account" placeholder="Enter Your Whatsapp Number" class="form-control" required>
-                                </div> -->
                                 <div class="form-group">
                                     <label>Address</label>
                                     <input type="text" name="address" placeholder="Enter Your Address" class="form-control" required>
@@ -81,15 +88,65 @@
                                 <div class="form-group">
                                     <label>User Description</label>
                                     <select type="text" name="occupation" placeholder="Enter Your Description/Occupation" class="form-control" required>
-                                        <option value="student">Student</option>
+                                        <option value="Student">Student</option>
+                                        <option value="Job">Job</option>
+                                        <option value="Business">Business</option>
+                                        <option value="Professional">Professional</option>
+                                        <option value="Other">Other</option>
                                         <!-- <option value="jobgorp">Job Govt/Public Sector</option> -->
                                         <!-- <option value=""></option> -->
                                         <!-- <option></option> -->
                                     </select>
                                 </div>
-
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input type="password" name="password" placeholder="Enter Your Password" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Refer Id</label>
+                                    <?php  
+                                        
+                                        // $refer_name = mysqli_query($con, "select * from users where users.id = '$refer';")->fetch_array()[0]['name'];
+                                    ?>
+                                    <input type="text" onchange="checkReferal(this.value)" name="refer" <?php if(isset($_GET['refer'])) {echo "disabled='true'";}?> value="<?php if(isset($_GET['refer'])){ $refer = $_GET['refer']; echo $refer; } else { echo '';} ?>" placeholder="Enter Referal Id" class="form-control">
+                                    <script>
+                                        function checkReferal(code){
+                                            // $.post("newjoin.jsp", {suggest: txt}, function(result){
+                                            //     $("span").html(result);
+                                            //     });
+                                                $.ajax({
+                                                url: "newjoin.php?getrefername="+code,
+                                                type: "GET",
+                                                // data: new FormData(this),
+                                                contentType: false,
+                                                cache: false,
+                                                processData: false,
+                                                beforeSend: function() { 
+                                                    document.getElementById('hidden_refer_id').value = code;
+                                                },
+                                                success: function(data) {
+                                                    document.getElementById('refer_name').innerText = data; 
+                                                    // if (data == 'invalid') {
+                                                    //     // invalid file format.
+                                                    //     $("#err").html("Invalid File !").fadeIn();
+                                                    // } else {
+                                                    //     // view uploaded file.
+                                                    //     $("#preview").append(data).fadeIn();
+                                                    //     $("#form")[0].reset();
+                                                    // }
+                                                },
+                                                error: function(e) {
+                                                    // $("#err").html(e).fadeIn();
+                                                }
+                                            });
+                                        }
+                                    </script>
+                                </div>
+                                <span>Refered By: <b id="refer_name"><?php if(isset($_GET['refer'])){   $refer = $_GET['refer'];
+                                     echo $refer_name = mysqli_query($con, "select * from users where users.id = '$refer';")->fetch_array()['name']; 
+                                     } else { echo 'Padchinh';} ?></b></span>
                                 <div class="form-group text-right">
-                                    <input type="hidden" name="underuser" value="<?php echo '1';?>">
+                                    <input type="hidden" id="hidden_refer_id" name="underuser" value="<?php if(isset($_GET['refer'])){ echo $_GET['refer'];} else { echo 'padchinh';} ?>">
                                     <input type="submit" name="join_user" class="btn btn-primary" value="join">
                                 </div>
                             </fieldset>
