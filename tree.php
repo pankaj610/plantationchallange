@@ -74,7 +74,8 @@ $taskdone = false;
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Tree</h1>
+                        <h1 class="page-header">Tree </h1>
+                        <h3 style="background-color:honeydew;"><b style="color:#42f548">{Task Approved}</b><b style="color:#1430B1">{Task Pending}</b><b style="color:#00c0ff;">{Task Completed}</b><b style="color:red">{Task Disapproved}</b></h3>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -223,9 +224,13 @@ $taskdone = false;
                         if ($root_user_array['status'] == 'pending') {
                             $color = "#1430B1";
                             $viewother = "";
-                        } else if ($root_user_array['status'] == 'done') {
+                        } else if($root_user_array['status'] == 'done'){
+                            $color = "#00c0ff";   
+                        } else if ($root_user_array['status'] == 'approved') {
                             $color = "#42f548";
                             $viewother = "onclick=viewOtherTask('" . $root_user_array['id'] . "')";
+                        } else if($root_user_array['status'] == 'disapproved'){
+                            $color = "red";
                         }
                         $tree .= "<li><p " . $viewother . "><i class='fa fa-user fa-4x' style='color:$color'></i><br><span>$name</span></p>";
                         $id = $root_user_array['id'];

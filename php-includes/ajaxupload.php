@@ -21,7 +21,8 @@ if ( $_FILES['image']) {
             include_once 'connect.php';
             $user_id = mysqli_query($con, "select * from users where users.email = '$user_email';")->fetch_array()['id'];
             //insert form data in the database
-            $query = mysqli_query($con, "insert into tasks(`user_id`,`image_url`,`task_name`) values('$user_id','$path','Plantation Challange')");
+            $taskid = uniqid();
+            $query = mysqli_query($con, "insert into tasks(`id`,`user_id`,`image_url`,`task_name`) values('$taskid','$user_id','$path','Plantation Challange')");
 
             $tasks_list = mysqli_query($con, "select * from tasks where user_id = (select id from users where users.email = '$user_email') and image_url='$path'");
             while ($task_row = $tasks_list->fetch_array()) {

@@ -97,7 +97,7 @@ if (isset($_POST)) {
 
                 //Insert into User profile
                 $userid = uniqid();
-                $query = mysqli_query($con, "insert into users(`id`,`name`,`gender`,`email`,`mobile`,`address`,`occupation`,`password`,`under_user`, `status`) values('$userid','$name','$gender','$email','$mobile','$address','$occupation','$password', '$underuserid', 'pending')");
+                $query = mysqli_query($con, "insert into users(`id`,`doj`,`name`,`gender`,`email`,`mobile`,`address`,`occupation`,`password`,`under_user`, `status`) values('$userid',CURRENT_TIMESTAMP,'$name','$gender','$email','$mobile','$address','$occupation','$password', '$underuserid', 'pending')");
 
                 //Insert into Tree
                 //So that later on we can view tree.

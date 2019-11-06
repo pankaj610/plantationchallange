@@ -6,7 +6,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+                <a class="navbar-brand" href="index.html">Padchinh Admin</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -39,14 +39,14 @@
                             <a href="home.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="view-pin-request.php"><i class="fa fa-adjust fa-fw"></i> View Pin Request</a>
+                            <a href="view-pin-request.php"><i class="fa fa-adjust fa-fw"></i> View Requests</a>
                         </li>
                         <li>
-                            <a href="income.php"><i class="fa fa-rupee fa-fw"></i> Income</a>
+                            <a href="income.php"><i class="fa fa-user fa-fw"></i>All Users</a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="income-history.php"><i class="fa fa-rupee fa-fw"></i> Income History</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

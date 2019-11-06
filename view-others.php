@@ -60,7 +60,7 @@ if ($result) {
                     echo "<h1>Task Completed By:<b>" . $result = mysqli_query($con, "select * from users where users.id='$user_id' ")->fetch_array()['name'] . "</b></h1>";
                     while ($row = mysqli_fetch_array($user_tasks)) {
                         echo  "
-                                    <img  width='200' class='preview_image' height='200' src='php-includes/" . $row['image_url'] . "' />
+                                    <a href='php-includes/" . $row['image_url'] . "'><img class='preview_image' style='width:300px;height:300px;' src='php-includes/" . $row['image_url'] . "' /></a>
                                 ";
                     }
                 }

@@ -58,30 +58,17 @@ $base_url = "network";
                         <div class="col-lg-12">
                             <h1 class="page-header">My Task</h1>
                         </div>
-                        <!-- /.col-lg-12 -->
                     </div>
-                    <!-- /.row -->
 
                     <div class="row">
                         <div id="preview">
                             <?php
                                 $tasks_list = mysqli_query($con, "select * from tasks where user_id = (select id from users where users.email = '$userid')");
                                 while ($task_row = $tasks_list->fetch_array()) {
-                                    echo "<a href='php-includes/" . $task_row['image_url'] . "' ><img  class='preview_image' style='width:300px;height:300px;'  src='php-includes/" . $task_row['image_url'] . "' /></a>";
+                                    echo "<a target='_blank' href='php-includes/" . $task_row['image_url'] . "' ><img  class='preview_image' style='width:300px;height:300px;'  src='php-includes/" . $task_row['image_url'] . "' /></a>";
                                 }
                                 ?>
                         </div>
-
-                        <!-- <div class="col-lg-12">
-                            <div class="card" style="width:400px">
-                                <img class="card-img-top" src="https://www.w3schools.com/bootstrap4/img_avatar1.png" alt="Card image" style="width:100%">
-                                <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    <a href="#" class="btn btn-primary">See Profile</a>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
                 <?php
                 } else if (isset($_GET['completetask'])) {
@@ -97,84 +84,15 @@ $base_url = "network";
                         <div class="col-lg-12">
                             <h1 class="page-header">My Task</h1>
                         </div>
-                        <!-- /.col-lg-12 -->
                     </div>
-                    <!-- /.row -->
-                    <!-- <div class="row">
-                        <div class="col-lg-12">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-striped">
-                                    <tr>
-                                        <th>Task Status</th>
-                                        <th>Task Date</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    <?php
-                                        // $i=1;
-                                        // $query = mysqli_query($con,"select * from pin_list where userid='$userid' and status='open'");
-                                        // if(mysqli_num_rows($query)>0){
-                                        // 	while($row=mysqli_fetch_array($query)){
-                                        // 		$pin = $row['pin'];
-                                        ?>
-                                    <tr>
-                                        <td><?php
-                                                $current_user_query = mysqli_query($con, "select * from users where users.email = '$userid';");
-                                                while ($user_row = $current_user_query->fetch_array()) {
-                                                    if ($user_row['status'] == 'done')
-                                                        echo "<span style='color:green'>Completed</span>";
-                                                    else if ($user_row['status'] == 'pending')
-                                                        echo "<span style='color:red'>Pending</span>";
-                                                }
-                                                ?></td>
-                                        <td>16/Sept/2019<?php // echo $pin 
-                                                            ?></td>
-                                        <td>
-                                            <?php
-                                                $current_user_query = mysqli_query($con, "select * from users where users.email = '$userid';");
-                                                while ($user_row = $current_user_query->fetch_array()) {
-                                                    if ($user_row['status'] == 'done')
-                                                        echo "<a href='pin.php?viewtask'><button class='btn btn-success'>View Task</button></a>";
-                                                    else if ($user_row['status'] == 'pending')
-                                                        echo "<a href='complete-task.php'><button class='btn btn-primary'>Complete Task</button></a>";
-                                                }
-                                                ?>
-                                            <?php
-                                                $_SERVER;
-                                                echo '<button class="btn btn-info" onclick="shareFunction()">Challange Others</button>';
-                                                $share_url = 'whatsapp://send?text=http://' . $_SERVER['HTTP_HOST'] . '/' . $base_url . '/newjoin.php';
-                                                echo '<script>
-                                                        function shareFunction() { 
-                                                            window.location.replace("' . $share_url . '");
-                                                        }
-                                                    </script>';
 
-                                                ?>
-
-                                            <?php // echo $pin 
-                                                ?></td>
-                                    </tr>
-                                    <?php
-                                        // 		$i++;
-                                        // 	}
-                                        // }
-                                        // else{
-                                        ?>
-                                    <tr>
-                                        <td colspan="3">Sorry you have no pin.</td>
-                                    </tr>
-                                    <?php
-                                        // }
-                                        ?>
-                                </table>
-
-                            </div>
-                        </div>
-                    </div> -->
 
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="panel panel-default">
-                                <div class="panel-heading"><span class="panel-title">Tasks <span style="color:red">Pending</span>/<span style="color:green">Completed</span></span></div>
+                                <div class="panel-heading">
+                                <h3 ><b style="color:#42f548">{Task Approved}</b><b style="color:#1430B1">{Task Pending}</b><b style="color:#00c0ff;">{Task Completed}</b><b style="color:red">{Task Disapproved}</b></h3>
+                                </div>
                                 <div class="panel-body">
                                     <div class="table-responsive">
                                         <table class="table">
@@ -187,14 +105,6 @@ $base_url = "network";
                                                 </tr>
                                             </thead>
                                             <tbody>
-
-                                                <?php
-                                                    // $i=1;
-                                                    // $query = mysqli_query($con,"select * from pin_list where userid='$userid' and status='open'");
-                                                    // if(mysqli_num_rows($query)>0){
-                                                    // 	while($row=mysqli_fetch_array($query)){
-                                                    // 		$pin = $row['pin'];
-                                                    ?>
                                                 <tr>
                                                     <td>
                                                         Plantation Challange
@@ -203,28 +113,33 @@ $base_url = "network";
                                                             $current_user_query = mysqli_query($con, "select * from users where users.email = '$userid';");
                                                             while ($user_row = $current_user_query->fetch_array()) {
                                                                 if ($user_row['status'] == 'done')
-                                                                    echo "<span style='color:green'>Completed</span>";
+                                                                    echo "<span style='color:#00c0ff'>Waiting For Approval</span>";
                                                                 else if ($user_row['status'] == 'pending')
-                                                                    echo "<span style='color:red'>Pending</span>";
+                                                                    echo "<span style='color:#1430B1'>Pending Task</span>";
+                                                                else if ($user_row['status'] == 'disapproved')
+                                                                    echo "<span style='color:red'>Task Disapproved. Upload proper images or your task.</span>";
+                                                                else if ($user_row['status'] == 'approved')
+                                                                    echo "<span style='color:#42f548'>Task Approved, Collect your Certificate.</span>";
                                                             }
                                                             ?></td>
-                                                    <td>16/Sept/2019<?php // echo $pin 
-                                                                        ?></td>
+                                                    <td><?php $current_user_doj = mysqli_query($con, "select * from users where users.email = '$userid';");
+                                                            echo $user_doj = mysqli_fetch_array($current_user_doj)['doj'];
+                                                            ?></td>
                                                     <td>
                                                         <?php
                                                             $current_user_query = mysqli_query($con, "select * from users where users.email = '$userid';");
-                                                            while ($user_row = $current_user_query->fetch_array()) {
-                                                                if ($user_row['status'] == 'done')
-                                                                    echo "<a href='pin.php?viewtask'><button class='btn btn-success'>View Task</button></a>";
-                                                                else if ($user_row['status'] == 'pending')
-                                                                    echo "<a href='complete-task.php'><button class='btn btn-primary'>Complete Task</button></a>";
-                                                            }
+                                                            $user_row = $current_user_query->fetch_array();
+                                                            if($user_row['status'] == 'approved') { echo "<a target='_blank' href='certificate/certificate.php' style='margin-right:5px;'><button class='btn btn-primary'>Download Certificate</button></a>"; }
+                                                            if ($user_row['status'] == 'approved' || $user_row['status'] == 'done')
+                                                                echo "<a href='pin.php?viewtask'><button class='btn btn-success'>View Task</button></a>";
+                                                            else if ($user_row['status'] == 'pending' || $user_row['status'] == 'disapproved')
+                                                                echo "<a href='complete-task.php'><button class='btn btn-primary'>Complete Task</button></a>";
                                                             ?>
                                                         <?php
                                                             $_SERVER;
                                                             echo '<button class="btn btn-info" onclick="shareFunction()">Challange Others</button>';
                                                             $user_id = mysqli_query($con, "select * from users where users.email = '$userid';")->fetch_array()['id'];
-                                                            $share_url = 'whatsapp://send?text=http://' . $_SERVER['HTTP_HOST'] . '/' . $base_url . '/newjoin.php?refer='.$user_id;
+                                                            $share_url = 'whatsapp://send?text=http://' . $_SERVER['HTTP_HOST'] . '/' . $base_url . '/newjoin.php?refer=' . $user_id;
                                                             echo '<script>
                                                                     function shareFunction() { 
                                                                         window.location.replace("' . $share_url . '");
@@ -232,9 +147,7 @@ $base_url = "network";
                                                                 </script>';
 
                                                             ?>
-
-                                                        <?php // echo $pin 
-                                                            ?></td>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>

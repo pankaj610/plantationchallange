@@ -154,8 +154,12 @@ if (isset($_GET['pin_request'])) {
                                                             <?php 
                                                                 $i=1;
                                                                 foreach($tree as $row){
-                                                                    if($row['status'] == 'pending') {$color = "red";$viewother = "";} 
-                                                                    else if($row['status'] == "done") { $color = "green";$viewother = "onclick=viewOtherTask('".$row['id']."')";}
+                                                                    $viewother = "";
+                                                                    if($row['status'] == 'pending') {$color = "#1430B1";} 
+                                                                    else if($row['status'] == "approved") { $color = "#42f548";$viewother = "onclick=viewOtherTask('".$row['id']."')";}
+                                                                    else if($row['status'] == "done") { $color = "#00c0ff";}
+                                                                    else if($row['status'] == "disapproved") { $color = "red";}
+                                                                    
                                                                     echo "<tr ".$viewother.">"
                                                                             ."<td>".$i."</td>"
                                                                             ."<td>".$row['name']."</td>"
